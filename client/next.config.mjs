@@ -4,10 +4,10 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "https://s3-inventorymanagement-app.s3.ca-central-1.amazonaws.com",
+                hostname: "s3-inventorymanagement-app.s3.ca-central-1.amazonaws.com", // Remove 'https://'
                 port: "",
-                pathname: "/**"
-            }
+                pathname: "/**",
+            },
         ]
     }
 };
