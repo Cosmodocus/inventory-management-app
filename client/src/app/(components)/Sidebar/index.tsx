@@ -12,6 +12,7 @@ import {
   Sliders,
   CircleDollarSign,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
@@ -75,7 +76,14 @@ const Sidebar = () => {
           isSidebarCollapsed ? "px-5" : "px-8"
         }`}
       >
-        <div>logo</div>
+        <div>
+          <Image
+            src="https://s3-inventorymanagement-app.s3.ca-central-1.amazonaws.com/logo.svg"
+            alt="RezTech logo"
+            width={27}
+            height={27}
+          />
+        </div>
         <h1
           className={`${
             isSidebarCollapsed ? "hidden" : "block"
