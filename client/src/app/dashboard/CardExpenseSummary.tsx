@@ -3,18 +3,18 @@ import {
   useGetDashboardMetricsQuery,
 } from "@/state/api";
 import { TrendingUp } from "lucide-react";
-import {PieChart, Pie, ResponsiveContainer, Cell} from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 type ExpenseSums = {
   [category: string]: number;
 };
 
-const colors = ["#00c49f", "#0088FE", "#FFBB28"];
+const colors = ["#00C49F", "#0088FE", "#FFBB28"];
 
 const CardExpenseSummary = () => {
-  const {data: dashboardMetrics, isLoading} = useGetDashboardMetricsQuery();
+  const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
 
-    const expenseSummary = dashboardMetrics?.expenseSummary[0];
+  const expenseSummary = dashboardMetrics?.expenseSummary[0];
 
   const expenseByCategorySummary =
     dashboardMetrics?.expenseByCategorySummary || [];
@@ -38,10 +38,9 @@ const CardExpenseSummary = () => {
   );
 
   const totalExpenses = expenseCategories.reduce(
-    (acc, category: {value: number}) => acc + category.value,
+    (acc, category: { value: number }) => acc + category.value,
     0
   );
-
   const formattedTotalExpenses = totalExpenses.toFixed(2);
 
   return (
@@ -61,16 +60,13 @@ const CardExpenseSummary = () => {
           <div className="xl:flex justify-between pr-7">
             {/* CHART */}
             <div className="relative basis-3/5">
-              <ResponsiveContainer
-                width="100%"
-                height={140}
-              >
+              <ResponsiveContainer width="100%" height={140}>
                 <PieChart>
                   <Pie
                     data={expenseCategories}
                     innerRadius={50}
                     outerRadius={60}
-                    fill={"#8884d8"}
+                    fill="#8884d8"
                     dataKey="value"
                     nameKey="name"
                     cx="50%"
@@ -93,32 +89,38 @@ const CardExpenseSummary = () => {
             </div>
             {/* LABELS */}
             <ul className="flex flex-col justify-around items-center xl:items-start py-5 gap-3">
-                {expenseCategories.map((entry, index) => (
-                    <li key={`legend-${index}`} className="flex items-center text-xs">
-                        <span className="mr-2 w-3 h-3 rounded-full" style={{backgroundColor: colors[index % colors.length]}}></span>
-                        {entry.name}
-                    </li>
-                ) )}
+              {expenseCategories.map((entry, index) => (
+                <li
+                  key={`legend-${index}`}
+                  className="flex items-center text-xs"
+                >
+                  <span
+                    className="mr-2 w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colors[index % colors.length] }}
+                  ></span>
+                  {entry.name}
+                </li>
+              ))}
             </ul>
           </div>
           {/* FOOTER */}
           <div>
             <hr />
             {expenseSummary && (
-                <div className="mt-3 flex justify-between items-center px-7 mb-4">
-                    <div className="pt-2">
-                        <p className="text-sm">
-                            Average
-                            <span className="font-semibold">
-                                ${expenseSummary.totalExpenses.toFixed(2)}
-                            </span>
-                        </p>
-                    </div>
-                    <span className="flex items-center mt-2">
-                        <TrendingUp className="mr-2 text-green-500" />
-                        30%
+              <div className="mt-3 flex justify-between items-center px-7 mb-4">
+                <div className="pt-2">
+                  <p className="text-sm">
+                    Average:{" "}
+                    <span className="font-semibold">
+                      ${expenseSummary.totalExpenses.toFixed(2)}
                     </span>
+                  </p>
                 </div>
+                <span className="flex items-center mt-2">
+                  <TrendingUp className="mr-2 text-green-500" />
+                  30%
+                </span>
+              </div>
             )}
           </div>
         </>
