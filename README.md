@@ -2,6 +2,8 @@
 
 Welcome to the **Inventory Management Dashboard** – a streamlined solution for managing products, inventory, sales, users, and expenses all in one place.
 
+![image](https://github.com/user-attachments/assets/f999ef0f-da00-46e2-b197-ac5c731dbd78)
+
 ## Tech Stack
 
 - **Frontend:**
